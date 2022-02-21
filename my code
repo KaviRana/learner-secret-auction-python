@@ -1,0 +1,28 @@
+from replit import clear 
+from logoart import logo
+
+print("Welcome to the secret auction.")
+game_on = True
+auction_info = {}
+def auction(name_of_bidder,bid):
+    auction_info[name_of_bidder] = bid
+
+while game_on == True:
+    print(logo)
+    user_name = input("Enter your name.")
+    user_bid = int(input("How much do you want to bid?"))
+    auction(user_name,user_bid)
+    
+    response = input("Is there another bidder? Type 'yes' or 'no'")
+    if response == "yes":
+        game_on = True
+        clear()
+    else:
+        highest_bid = 0
+        winner = ""
+        for bidder in auction_info:
+            if auction_info[bidder] > highest_bid:
+                highest_bid = auction_info[bidder]
+                winner = bidder
+        print(f"The highest bid is ${highest_bid} from {winner}")
+        game_on = False
